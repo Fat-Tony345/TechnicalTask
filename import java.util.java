@@ -10,7 +10,7 @@ public class Main {
             String result = calc(input);
             System.out.println(result);
         } catch (IllegalArgumentException e) {
-            System.out.println("Неизвестная ошибка: " + e.getMessage());
+            System.out.println("Ошибка: " + e.getMessage());
         }
     }
 
