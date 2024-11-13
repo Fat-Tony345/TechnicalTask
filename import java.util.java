@@ -21,14 +21,19 @@ public class Main {
         int num1 = 0;
         int num2 = 0;
         int operatorIndex = -1;
+        int operatorCount = 0;
 
         for (int i = 0; i < input.length(); i++) {
             char current = input.charAt(i);
             if (current == '+' || current == '-' || current == '*' || current == '/') {
                 operator = current;
                 operatorIndex = i;
-                break;
+                operatorCount++;
             }
+        }
+
+        if (operatorCount != 1) {
+            throw new IllegalArgumentException("Ввод должен содержать один оператор!");
         }
 
         if (operatorIndex != -1) {
@@ -36,8 +41,8 @@ public class Main {
             num2 = Integer.parseInt(input.substring(operatorIndex + 1));
         }
 
-        if (num1 > 10 || num2 > 10) {
-            throw new IllegalArgumentException("Максимальное значение операнда - 10!");
+        if (num1 > 10 || num2 > 10 || num1 < 1 || num2 < 1) {
+            throw new IllegalArgumentException("Значение операнда должно быть от 1 до 10!");
         }
 
         int result = 0;
@@ -48,9 +53,7 @@ public class Main {
         } else if (operator == '*') {
             result = num1 * num2;
         } else if (operator == '/') {
-            if (num2 == 0) {
-                throw new IllegalArgumentException("Делить на ноль нельзя!!!");
-            }
+            result = num1 / num2;
         } else {
             throw new IllegalArgumentException("Введите корректный оператор!");
         }
